@@ -25,36 +25,40 @@ public class OnboardingProgress {
 	private Employee employee;
 	
 	@Column(nullable = false)
-	private boolean personal_information_completed;
+	private boolean personalInformationCompleted;
 
 	@Column(nullable = false)
-	private boolean read_company_introduction;
+	private boolean readCompanyIntroduction;
 	
 	@Column(nullable = false)
-	private boolean acknowledged_company_policy;
+	private boolean acknowledgedCompanyPolicy;
 	
 	@Column(nullable = false)
-	private boolean checklist_joining_date;
+	private boolean checklistJoiningDate;
 	
 	@Column(nullable = false)
-	private boolean checklist_first_day;
+	private boolean checklistFirstDay;
 	
 	@Column(nullable = false)
-	private boolean checklist_orientation;
+	private boolean checklistOrientation;
 	
 	@Column(nullable = false)
-	private boolean joining_checklist_completed;
+	private boolean joiningChecklistCompleted;
 	
 	@Column(nullable = false)
-	private boolean final_confirmation;
+	private boolean finalConfirmation;
 	
 	@Column(nullable = false)
-	private LocalDateTime updated_at;
+	private LocalDateTime updatedAt = LocalDateTime.now();
 	
 	@Column(nullable = false)
-	private LocalDateTime created_at;
+	private LocalDateTime createdAt = LocalDateTime.now();
 	
 	public OnboardingProgress() {}
+	
+	public OnboardingProgress(Employee employee) {
+		this.employee = employee;
+	}
 
 	public Long getUserId() {
 		return userId;
@@ -72,78 +76,84 @@ public class OnboardingProgress {
 		this.employee = employee;
 	}
 
-	public boolean isPersonal_information_completed() {
-		return personal_information_completed;
+	public boolean isPersonalInformationCompleted() {
+		return personalInformationCompleted;
 	}
 
-	public void setPersonal_information_completed(boolean personal_information_completed) {
-		this.personal_information_completed = personal_information_completed;
+	public void setPersonalInformationCompleted(boolean personalInformationCompleted) {
+		this.personalInformationCompleted = personalInformationCompleted;
 	}
 
-	public boolean isRead_company_introduction() {
-		return read_company_introduction;
+	public boolean isReadCompanyIntroduction() {
+		return readCompanyIntroduction;
 	}
 
-	public void setRead_company_introduction(boolean read_company_introduction) {
-		this.read_company_introduction = read_company_introduction;
+	public void setReadCompanyIntroduction(boolean readCompanyIntroduction) {
+		this.readCompanyIntroduction = readCompanyIntroduction;
 	}
 
-	public boolean isAcknowledged_company_policy() {
-		return acknowledged_company_policy;
+	public boolean isAcknowledgedCompanyPolicy() {
+		return acknowledgedCompanyPolicy;
 	}
 
-	public void setAcknowledged_company_policy(boolean acknowledged_company_policy) {
-		this.acknowledged_company_policy = acknowledged_company_policy;
+	public void setAcknowledgedCompanyPolicy(boolean acknowledgedCompanyPolicy) {
+		this.acknowledgedCompanyPolicy = acknowledgedCompanyPolicy;
 	}
 
-	public boolean isChecklist_joining_date() {
-		return checklist_joining_date;
+	public boolean isChecklistJoiningDate() {
+		return checklistJoiningDate;
 	}
 
-	public void setChecklist_joining_date(boolean checklist_joining_date) {
-		this.checklist_joining_date = checklist_joining_date;
+	public void setChecklistJoiningDate(boolean checklistJoiningDate) {
+		this.checklistJoiningDate = checklistJoiningDate;
 	}
 
-	public boolean isChecklist_first_day() {
-		return checklist_first_day;
+	public boolean isChecklistFirstDay() {
+		return checklistFirstDay;
 	}
 
-	public void setChecklist_first_day(boolean checklist_first_day) {
-		this.checklist_first_day = checklist_first_day;
+	public void setChecklistFirstDay(boolean checklistFirstDay) {
+		this.checklistFirstDay = checklistFirstDay;
 	}
 
-	public boolean isChecklist_orientation() {
-		return checklist_orientation;
+	public boolean isChecklistOrientation() {
+		return checklistOrientation;
 	}
 
-	public void setChecklist_orientation(boolean checklist_orientation) {
-		this.checklist_orientation = checklist_orientation;
+	public void setChecklistOrientation(boolean checklistOrientation) {
+		this.checklistOrientation = checklistOrientation;
 	}
 
-	public boolean isJoining_checklist_completed() {
-		return joining_checklist_completed;
+	public boolean isJoiningChecklistCompleted() {
+		return joiningChecklistCompleted;
 	}
 
-	public void setJoining_checklist_completed(boolean joining_checklist_completed) {
-		this.joining_checklist_completed = joining_checklist_completed;
+	public void setJoiningChecklistCompleted(boolean joiningChecklistCompleted) {
+		this.joiningChecklistCompleted = joiningChecklistCompleted;
 	}
 
-	public boolean isFinal_confirmation() {
-		return final_confirmation;
+	public boolean isFinalConfirmation() {
+		return finalConfirmation;
 	}
 
-	public void setFinal_confirmation(boolean final_confirmation) {
-		this.final_confirmation = final_confirmation;
+	public void setFinalConfirmation(boolean finalConfirmation) {
+		this.finalConfirmation = finalConfirmation;
 	}
 
-	public LocalDateTime getUpdated_at() {
-		return updated_at;
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdated_at(LocalDateTime updated_at) {
-		this.updated_at = updated_at;
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-	
-	
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
 	
 }

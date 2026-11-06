@@ -1,7 +1,7 @@
 package com.example.employeeonboarding.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,42 +18,42 @@ public class PersonalInformation {
 	
 	@Id
 	@Column(name = "user_id")
-	private Long user_id;
+	private Long userId;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId
 	@JoinColumn(name = "user_id")
 	private Employee employee;
 	
-	@Column(name = "full_name", nullable = false)
+	@Column(nullable = false)
 	private String fullName;
 	
-	@Column(name = "phone_number", nullable = false, length = 20)
+	@Column(nullable = false, length = 20)
 	private String phoneNumber;
 	
 	@Column(name = "birth_date", nullable = false)
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
-	@Column(name = "emergency_contact_name", nullable = false)
+	@Column(nullable = false)
 	private String emergencyContactName;
 	
-	@Column(name = "emergency_contact_number", nullable = false, length = 20)
+	@Column(nullable = false, length = 20)
 	private String emergencyContactNumber;
 	
 	@Column(nullable = false)
 	private String address;
 	
 	@Column(nullable = false)
-	private LocalDateTime updated_at = LocalDateTime.now();
+	private LocalDateTime updatedAt = LocalDateTime.now();
 	
 	public PersonalInformation() {}
 
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public Employee getEmployee() {
@@ -80,11 +80,11 @@ public class PersonalInformation {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -112,14 +112,12 @@ public class PersonalInformation {
 		this.address = address;
 	}
 
-	public LocalDateTime getUpdated_at() {
-		return updated_at;
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdated_at(LocalDateTime updated_at) {
-		this.updated_at = updated_at;
-	}
-	
-	
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}	
 
 }

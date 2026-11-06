@@ -1,5 +1,7 @@
 package com.example.employeeonboarding.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.employeeonboarding.dto.ChecklistProgressDto;
 import com.example.employeeonboarding.dto.DashboardResponseDto;
 import com.example.employeeonboarding.dto.PersonalInfoRequestDto;
-import com.example.employeeonboarding.dto.RegisterRequestDto;
-import com.example.employeeonboarding.dto.UserResponseDto;
+import com.example.employeeonboarding.dto.PersonalInfoResponseDto;
+import com.example.employeeonboarding.dto.ProfileDto;
+import com.example.employeeonboarding.dto.UserDto;
 import com.example.employeeonboarding.service.EmployeeService;
 
 import jakarta.validation.Valid;
@@ -27,25 +31,75 @@ public class EmployeeController {
 		this.employeeService = employeeService;
 	}
 	
-	@PostMapping("/register")
-	public ResponseEntity<UserResponseDto> registerUser(
-			@Valid @RequestBody RegisterRequestDto requestDto) {
+	@GetMapping("/profile")
+	public ResponseEntity<ProfileDto> getProfile(
+			@RequestBody UserDto requestDto) {
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(employeeService.register(requestDto));
-	}
-	
-	@PutMapping("/profile")
-	public ResponseEntity<PersonalInfoRequestDto> savePersonalInfo(
-			@RequestBody PersonalInfoRequestDto requestDto) {
-		
-		PersonalInfoRequestDto saved = employeeService.savePersonalInfo(requestDto);
-		return ResponseEntity.status(HttpStatus.OK).body(saved);
+		ProfileDto data = employeeService.getProfile(requestDto);
+		return ResponseEntity.status(HttpStatus.OK).body(data);
 	}
 	
 	@GetMapping("/dashboard")
 	public ResponseEntity<DashboardResponseDto> getDashboard() {
-		DashboardResponseDto data = employeeService.getDashboardData();
-		return ResponseEntity.ok(data);
+		return ResponseEntity.ok(employeeService.getDashboardData());
 	}
+	
+	// Step 1
+	@PutMapping("/personal-info")
+	public ResponseEntity<PersonalInfoResponseDto> savePersonalInfo(
+			@Valid @RequestBody PersonalInfoRequestDto requestDto) {
+		
+		return ResponseEntity.ok(employeeService.savePersonalInfo(requestDto));
+	}
+	
+	@GetMapping("/personal-info")
+	public ResponseEntity<PersonalInfoResponseDto> getPersonalInfo() {
+		
+		return ResponseEntity.ok(employeeService.getPersonalInfo());
+	}
+	
+	// Step 2
+	@GetMapping("/company-intro")
+	public ResponseEntity<String> getCompanyIntro() {
+		return ResponseEntity.status(HttpStatus.OK).body(employeeService.getCompanyIntro());
+	}
+	
+	//Step 2
+	@PutMapping("/company-intro")
+	public ResponseEntity<Boolean> readCompanyIntro() {
+		return ResponseEntity.ok(employeeService.readIntro());
+	}
+	
+	// Step 3
+	@GetMapping("/company-policy")
+	public ResponseEntity<String> getCompanyPolicy() {
+		return ResponseEntity.status(HttpStatus.OK).body(employeeService.getPolicy());
+	}
+	
+	// Step 3
+	@PutMapping("/company-policy")
+	public ResponseEntity<Boolean> readCompanyPolicy() {
+		return ResponseEntity.ok(employeeService.acknowledgePolicy());
+	}
+	
+	// Step 4
+	@GetMapping("/joining-checklist")
+	public ResponseEntity<List<Boolean>> getJoiningChecklistProgress() {
+		return ResponseEntity.ok(employeeService.getChecklistProgress());
+	}
+	
+	//Step 4
+	@PostMapping("/joining-checklist")
+	public ResponseEntity<List<Boolean>> saveJoiningChecklistProgress(
+			@RequestBody ChecklistProgressDto requestDto) {
+		return ResponseEntity.ok(employeeService.saveChecklistProgress());
+	}
+	
+	// Step 5
+	@PostMapping("/final-confirmation")
+	public ResponseEntity<String> confirmOnboarding() {
+		return ResponseEntity.ok(employeeService.finishOnboarding());
+	}
+	
 	
 }

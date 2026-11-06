@@ -14,7 +14,7 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long user_id;
+	private Long userId;
 	
 	@Column(nullable = false)
 	private String name;
@@ -26,7 +26,7 @@ public class Employee {
 	private String password;
 	
 	@Column(nullable = false)
-	private LocalDateTime created_at;
+	private LocalDateTime createdAt = LocalDateTime.now();
 	
 	public Employee() {}
 
