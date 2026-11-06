@@ -1,0 +1,33 @@
+# === Backend (Java / Maven / Gradle) ===
+backend/target/
+*.class
+*.jar
+*.war
+.mvn/wrapper/maven-wrapper.jar
+
+# === Secret & Local Config Files (NEVER COMMIT) ===
+.env
+.env.*
+*.env
+application-local.properties
+application-secret.properties
+
+# === Frontend Web & Mobile (Node / Vite / Expo) ===
+node_modules/
+**/node_modules/
+web/dist/
+mobile/.expo/
+mobile/dist/
+mobile/web-build/
+npm-debug.*
+yarn-error.*
+
+# === IDEs & OS Files ===
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+.DS_Store
+Thumbs.db
