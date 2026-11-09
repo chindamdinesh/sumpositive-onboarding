@@ -12,6 +12,7 @@ import com.example.employeeonboarding.dto.LoginRequestDto;
 import com.example.employeeonboarding.dto.LoginResponseDto;
 import com.example.employeeonboarding.dto.RegisterRequestDto;
 import com.example.employeeonboarding.dto.RegisterResponseDto;
+import com.example.employeeonboarding.service.AuthService;
 import com.example.employeeonboarding.service.EmployeeService;
 
 import jakarta.validation.Valid;
@@ -20,24 +21,24 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthController {
 	
-	private final EmployeeService employeeService;
+	private final AuthService authService;
 	
-	public AuthController(EmployeeService employeeService) {
-		this.employeeService = employeeService;
+	public AuthController(AuthService authService) {
+		this.authService = authService;
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<RegisterResponseDto> registerUser(
 			@Valid @RequestBody RegisterRequestDto requestDto) {
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(employeeService.register(requestDto));
+		return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(requestDto));
 	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponseDto> loginUser(
 			@Valid @RequestBody LoginRequestDto requestDto) {
 		
-		return ResponseEntity.status(HttpStatus.OK).body(employeeService.login(requestDto));
+		return ResponseEntity.status(HttpStatus.OK).body(authService.login(requestDto));
 	}
 	
 	

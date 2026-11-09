@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.employeeonboarding.dto.ChecklistProgressDto;
 import com.example.employeeonboarding.dto.DashboardResponseDto;
-import com.example.employeeonboarding.dto.PersonalInfoRequestDto;
-import com.example.employeeonboarding.dto.PersonalInfoResponseDto;
+import com.example.employeeonboarding.dto.PersonalInfoDto;
 import com.example.employeeonboarding.dto.ProfileDto;
-import com.example.employeeonboarding.dto.UserDto;
 import com.example.employeeonboarding.service.EmployeeService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/onboarding")
+@RequestMapping("/api/onboarding")
 public class EmployeeController {
 	
 	private final EmployeeService employeeService;
@@ -32,10 +30,9 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/profile")
-	public ResponseEntity<ProfileDto> getProfile(
-			@RequestBody UserDto requestDto) {
+	public ResponseEntity<ProfileDto> getProfile() {
 		
-		ProfileDto data = employeeService.getProfile(requestDto);
+		ProfileDto data = employeeService.getProfile();
 		return ResponseEntity.status(HttpStatus.OK).body(data);
 	}
 	
@@ -46,14 +43,14 @@ public class EmployeeController {
 	
 	// Step 1
 	@PutMapping("/personal-info")
-	public ResponseEntity<PersonalInfoResponseDto> savePersonalInfo(
-			@Valid @RequestBody PersonalInfoRequestDto requestDto) {
+	public ResponseEntity<PersonalInfoDto> savePersonalInfo(
+			@Valid @RequestBody PersonalInfoDto requestDto) {
 		
 		return ResponseEntity.ok(employeeService.savePersonalInfo(requestDto));
 	}
 	
 	@GetMapping("/personal-info")
-	public ResponseEntity<PersonalInfoResponseDto> getPersonalInfo() {
+	public ResponseEntity<PersonalInfoDto> getPersonalInfo() {
 		
 		return ResponseEntity.ok(employeeService.getPersonalInfo());
 	}
@@ -89,10 +86,10 @@ public class EmployeeController {
 	}
 	
 	//Step 4
-	@PostMapping("/joining-checklist")
+	@PutMapping("/joining-checklist")
 	public ResponseEntity<List<Boolean>> saveJoiningChecklistProgress(
 			@RequestBody ChecklistProgressDto requestDto) {
-		return ResponseEntity.ok(employeeService.saveChecklistProgress());
+		return ResponseEntity.ok(employeeService.saveChecklistProgress(requestDto));
 	}
 	
 	// Step 5
