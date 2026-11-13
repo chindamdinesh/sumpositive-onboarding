@@ -17,7 +17,7 @@ public record PersonalInfoDto (
 		@Past(message = "Date of Birth must be in the past")
 		LocalDate dateOfBirth,
 		
-		@NotBlank(message = "Emergency contact name  is required")
+		@NotBlank(message = "Emergency contact name is required")
 		String emergencyContactName,
 		
 		@NotBlank(message = "Emergency contact number is required")

@@ -64,7 +64,7 @@ public class EmployeeController {
 	//Step 2
 	@PutMapping("/company-intro")
 	public ResponseEntity<Boolean> readCompanyIntro() {
-		return ResponseEntity.ok(employeeService.readIntro());
+		return ResponseEntity.ok(employeeService.readCompanyIntro());
 	}
 	
 	// Step 3
@@ -81,13 +81,13 @@ public class EmployeeController {
 	
 	// Step 4
 	@GetMapping("/joining-checklist")
-	public ResponseEntity<List<Boolean>> getJoiningChecklistProgress() {
+	public ResponseEntity<ChecklistProgressDto> getJoiningChecklistProgress() {
 		return ResponseEntity.ok(employeeService.getChecklistProgress());
 	}
 	
 	//Step 4
 	@PutMapping("/joining-checklist")
-	public ResponseEntity<List<Boolean>> saveJoiningChecklistProgress(
+	public ResponseEntity<ChecklistProgressDto> saveJoiningChecklistProgress(
 			@RequestBody ChecklistProgressDto requestDto) {
 		return ResponseEntity.ok(employeeService.saveChecklistProgress(requestDto));
 	}

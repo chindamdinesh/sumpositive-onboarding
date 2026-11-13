@@ -51,6 +51,9 @@ public class OnboardingProgress {
 	@Column(nullable = false)
 	private LocalDateTime updatedAt = LocalDateTime.now();
 	
+	@Column(nullable = true)
+	private LocalDateTime completedAt;
+	
 	@Column(nullable = false)
 	private LocalDateTime createdAt = LocalDateTime.now();
 	
@@ -155,5 +158,14 @@ public class OnboardingProgress {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+
+	public LocalDateTime getCompletedAt() {
+		return completedAt;
+	}
+
+	public void setCompletedAt(LocalDateTime completedAt) {
+		this.completedAt = completedAt;
+	}
+	
 	
 }

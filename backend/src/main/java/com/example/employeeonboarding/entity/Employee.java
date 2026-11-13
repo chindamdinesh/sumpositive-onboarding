@@ -30,6 +30,10 @@ public class Employee {
 	
 	public Employee() {}
 
+	public Employee(Long userId) {
+		this.userId = userId;
+	}
+
 	public String getName() {
 		return name;
 	}

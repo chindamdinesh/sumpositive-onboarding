@@ -1,5 +1,7 @@
 package com.example.employeeonboarding.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +47,7 @@ public class AuthService {
 		Employee savedEmployee = employeeRepository.save(employee);
 		
 		OnboardingProgress progress = new OnboardingProgress(savedEmployee);
+		progress.setCreatedAt(LocalDateTime.now());
 		progressRepository.save(progress);
 		
 		return new RegisterResponseDto("Registered successfully! Login with your credentials.");

@@ -43,6 +43,7 @@ public class GlobalExceptionHandler {
     // Catch-all safety net -> Returns HTTP 500 without leaking internal stack traces
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGenericException(Exception ex) {
+    	ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("message", "An unexpected server error occurred."));
     }

@@ -47,6 +47,10 @@ public class PersonalInformation {
 	private LocalDateTime updatedAt = LocalDateTime.now();
 	
 	public PersonalInformation() {}
+	
+	public PersonalInformation(Employee employee) {
+		this.employee = employee;
+	}
 
 	public Long getUserId() {
 		return userId;
